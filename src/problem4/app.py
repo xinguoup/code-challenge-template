@@ -45,7 +45,7 @@ def get_weather():
     if args.get('station_id'):
         station_id = ('station_id', args.get('station_id'))
     if args.get('date'):
-        date = ('date', datetime.datetime.strptime(args.get('date'), "%Y%m%d").date())
+        date = ('date(date)', datetime.datetime.strptime(args.get('date'), "%Y%m%d").date())
     
     # request check
     if not station_id and not date:

@@ -13,7 +13,7 @@ def generate_where_clause(where_condition):
         if c:
             if where_sql:
                 where_sql += "AND"
-            where_sql += " {}={} ".format(c[0], c[1])
+            where_sql += " {}='{}' ".format(c[0], c[1])
 
     return "WHERE" + where_sql
         
