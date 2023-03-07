@@ -15,4 +15,4 @@ This is a solution of coding exercise, including ingesting some weather and crop
 + use `python src/problem4/tests/unit_tests.py` to run the case.
 
 ### Deployment
-We could mainly use Docker to build an image, including building a python runtime environment based on requirements file and Copy the code and database to the image. Then we can upload the image we created to the Image Repository on AWS, and use the EC2 service of AWS to select the image we built to start a virtual machine on AWS. At this time, our service will also start. 
+We could mainly use **Dockerfile** to build an image, including building a python runtime environment based on requirements file and Copy the code and database to the image. Then we can upload the image we created to the Image Repository on AWS, and use the EC2 service of AWS to select the image we built to start a virtual machine on AWS. At this time, our service will also start. 
