@@ -16,8 +16,8 @@ def index():
         "introduce": "this is Rest API",
         "apis": {
             "GET":[
-                {"/api/weather": "Get all weather data"},
-                {"/api/yield": "Get all weather data"}
+                {"/api/weather": "Get Weather Data"},
+                {"/api/weather/stats": "Get Analysis Data"}
             ]
         }
     }
@@ -58,6 +58,7 @@ def get_weather():
     
     return json.dumps(rep)
 
+
 @app.route('/api/weather/stats', methods=['GET'])
 def get_weather_stats():
     """
@@ -94,6 +95,7 @@ def get_weather_stats():
 
 def create_app():
     app.run()
+
 
 if __name__ == '__main__':
     app.run()
