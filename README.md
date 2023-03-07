@@ -10,4 +10,9 @@ This is a solution of coding exercise, including ingesting some weather and crop
 use `python src/problem4/app.py` to start the server.
 
 ### Run Test Case
-use `python src/problem4/tests/unit_tests.py` to run the case.
+- require Python >= 3.7
+- use `pip install -r src/problem4/requirements.txt` to setup your ENV
+- use `python src/problem4/app.py` to start the server.
+
+### Extra Credit - Deployment
+We could mainly use Docker to build an image, including building a python runtime environment based on requirements file and Copy the code and database to the mirror. Then we can upload the mirror we created to the mirror warehouse on AWS, and use the EC2 service of AWS to select the image we built to start a virtual machine on AWS. At this time, our service will also start. 
