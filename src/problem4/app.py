@@ -1,7 +1,12 @@
+import os
+import sys
 import json
 import datetime
+from flask import Flask, request
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+sys.path.append(basedir)
 import db_utils
-from flask import Flask
 
 app = Flask(__name__)
 
@@ -71,6 +76,12 @@ def get_weather_stats():
     if args.get('year'):
         year = ('year', args.get('year'))
 
+    # request check
+    if not station_id and not date:
+        rep["code"] = 1
+        rep["err_msg"] = "station_id or year must set one"
+        return json.dumps(rep)
+
     limit = args.get('limit', 10)
     offset = args.get('offset', 0)
 
@@ -80,6 +91,9 @@ def get_weather_stats():
 
     return json.dumps(rep)
 
+
+def create_app():
+    app.run()
 
 if __name__ == '__main__':
     app.run()

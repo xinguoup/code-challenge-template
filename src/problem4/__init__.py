@@ -13,4 +13,3 @@ def init_connect_engine():
 
 app = Flask(__name__)
 db = init_connect_engine()
-
