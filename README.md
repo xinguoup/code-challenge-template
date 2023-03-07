@@ -14,5 +14,5 @@ use `python src/problem4/app.py` to start the server.
 - use `pip install -r src/problem4/requirements.txt` to setup your ENV
 - use `python src/problem4/app.py` to start the server.
 
-### Extra Credit - Deployment
-We could mainly use Docker to build an image, including building a python runtime environment based on requirements file and Copy the code and database to the image. Then we can upload the image we created to the image warehouse on AWS, and use the EC2 service of AWS to select the image we built to start a virtual machine on AWS. At this time, our service will also start. 
+### Deployment
+We could mainly use Docker to build an image, including building a python runtime environment based on requirements file and Copy the code and database to the image. Then we can upload the image we created to the Image Repository on AWS, and use the EC2 service of AWS to select the image we built to start a virtual machine on AWS. At this time, our service will also start. 
