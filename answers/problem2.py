@@ -2,6 +2,8 @@ import os
 import sqlite3
 import datetime
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 def check_dup_station(station_id, cursor):
     sql_str = "SELECT COUNT(id) FROM station_info WHERE id = {};".format(station_id)
     res = cursor.execute(sql_str).fetchall()
@@ -18,7 +20,7 @@ def ingestion(cursor):
     num_record_station = 0
     num_record_whether = 0
 
-    directory_path = "./wx_data"
+    directory_path = os.path.join(basedir, "../", "wx_data")
 
     # Loop through each file in the directory
     for filename in os.listdir(directory_path):
@@ -54,7 +56,6 @@ def ingestion(cursor):
                     wheather_record_data = [station_id] + content
                     
                     if not check_dup_wheather(wheather_record_data[0], wheather_record_data[1], cursor):
-
                         # Execute the SQL command to insert the data
                         cursor.execute("INSERT INTO wheather_record (station_id, date, max_temperature, min_temperature, precipitation_amount) VALUES (?, ?, ?, ?, ?)", wheather_record_data)
                         
