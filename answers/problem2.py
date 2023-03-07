@@ -11,7 +11,7 @@ def check_dup_station(station_id, cursor):
 
 def check_dup_wheather(station_id, date, cursor):
     # Function to avoid duplicate entry
-    sql_str = "SELECT COUNT(id) FROM wheather_record WHERE station_id = {} AND date = {};".format(station_id, date)
+    sql_str = "SELECT COUNT(id) FROM wheather_record WHERE station_id = {} AND date(date) = '{}';".format(station_id, date)
     res = cursor.execute(sql_str).fetchall()
     return res[0][0] > 0
 
