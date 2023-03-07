@@ -1,8 +1,13 @@
+import os
 import sqlite3
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 # For Problem 1, I will choose to use SQLite to create our database
 
 # create our database if it does not exist
-conn = sqlite3.connect('Wheather.db')
+db_path = os.path.join(basedir, "../", "Wheather.db")
+conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
 # create station_info table in our database

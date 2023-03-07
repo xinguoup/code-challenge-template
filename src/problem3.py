@@ -1,6 +1,10 @@
+import os
 import sqlite3
 
-conn = sqlite3.connect('Wheather.db')
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+db_path = os.path.join(basedir, "../", "Wheather.db")
+conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 cursor.execute('''DROP TABLE IF EXISTS avg_report''')
 

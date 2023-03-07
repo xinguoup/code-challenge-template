@@ -70,7 +70,8 @@ def ingestion(cursor):
 
 
 # Open a connection to the SQLite database
-conn = sqlite3.connect('Wheather.db')
+db_path = os.path.join(basedir, "../", "Wheather.db")
+conn = sqlite3.connect(db_path)
 # Get a cursor object
 cursor = conn.cursor()
 # sql_str = "SELECT COUNT(*) FROM station_info"
