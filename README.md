@@ -7,12 +7,12 @@ This is a solution of coding exercise, including ingesting some weather and crop
 + The folder of src includes all original code for problem 1, 2, 3, 4
 
 ### Run App
-use `python src/problem4/app.py` to start the server.
++ require Python >= 3.7
++ use `pip install -r src/problem4/requirements.txt` to setup your ENV
++ use `python src/problem4/app.py` to start the server.
 
 ### Run Test Case
-- require Python >= 3.7
-- use `pip install -r src/problem4/requirements.txt` to setup your ENV
-- use `python src/problem4/app.py` to start the server.
++ use `python src/problem4/tests/unit_tests.py` to run the case.
 
 ### Deployment
 We could mainly use Docker to build an image, including building a python runtime environment based on requirements file and Copy the code and database to the image. Then we can upload the image we created to the Image Repository on AWS, and use the EC2 service of AWS to select the image we built to start a virtual machine on AWS. At this time, our service will also start. 
