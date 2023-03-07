@@ -1,18 +1,9 @@
 import json
 import datetime
 import db_utils
-from flask import Flask, request, abort, jsonify
-
-# from utils import generate_where_clause, get_data
+from flask import Flask
 
 app = Flask(__name__)
-
-WX_SCHEMA = 'wx_schema'
-YLD_SCHEMA = 'yld_schema'
-WX_TABLE = 'wx_data'
-YLD_TABLE = 'yld_data'
-AVG_TABLE = 'avg_table'
-
 
 @app.route('/')
 def index():
@@ -31,7 +22,7 @@ def index():
 @app.route('/api/weather', methods=['GET'])
 def get_weather():
     """
-    Gets paginated weather from wx_table
+    Gets paginated weather from wheather_record
     Returns: JSON object
     """
     args = request.args
@@ -52,14 +43,41 @@ def get_weather():
         rep["code"] = 1
         rep["err_msg"] = "station_id or date must set one"
         return json.dumps(rep)
-    
-    offset = args.get('offset', 0)
+
     limit = args.get('limit', 10)
-    
+    offset = args.get('offset', 0)
+
     # get date from db
     data = db_utils.get_data_wheather_record_by_station_id_and_date([station_id, date], limit, offset)
     rep['data'] = data
     
+    return json.dumps(rep)
+
+@app.route('/api/weather/stats', methods=['GET'])
+def get_weather_stats():
+    """
+    Gets paginated weather stats from avg_report
+    Returns: JSON object
+    """
+    args = request.args
+    rep = {
+        "code": 0,
+        "err_msg": "",
+        "data": []
+    }
+    station_id = year = None
+    if args.get('station_id'):
+        station_id = ('station_id', args.get('station_id'))
+    if args.get('year'):
+        year = ('year', args.get('year'))
+
+    limit = args.get('limit', 10)
+    offset = args.get('offset', 0)
+
+    # get date from db
+    data = db_utils.get_data_avg_report_by_station_id_and_year([station_id, year], limit, offset)
+    rep['data'] = data
+
     return json.dumps(rep)
 
 
