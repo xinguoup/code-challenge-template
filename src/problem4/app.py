@@ -7,6 +7,7 @@ from flask import Flask, request
 basedir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(basedir)
 import db_utils
+from logger import logger
 
 app = Flask(__name__)
 
@@ -31,6 +32,7 @@ def get_weather():
     Returns: JSON object
     """
     args = request.args
+    logger.info("request args: %s" % str(args))
     rep = {
         "code": 0,
         "err_msg": "",
@@ -66,6 +68,7 @@ def get_weather_stats():
     Returns: JSON object
     """
     args = request.args
+    logger.info("request args: %s" % str(args))
     rep = {
         "code": 0,
         "err_msg": "",

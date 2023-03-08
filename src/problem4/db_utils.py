@@ -1,11 +1,11 @@
 import os
 import sys
-import datetime
 from flask import Flask
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(basedir, "../"))
 from problem4 import db
+from problem4.logger import logger
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -34,11 +34,11 @@ def get_data_wheather_record_by_station_id_and_date(where_condition, limit=10, o
     where_sql = generate_where_clause(where_condition)
     page_sql = generate_page_clause(limit, offset)
     sql_str = "SELECT station_id,date,max_temperature,min_temperature,precipitation_amount FROM wheather_record " + where_sql + page_sql
-    # print(sql_str)
+    logger.info("wheather_record sql_str: %s" % sql_str)
 
     conn = db.connect()
     sql_res = conn.execute(sql_str).fetchall()
-    # print(sql_res)
+    logger.debug("wheather_record sql_res: %s" % str(sql_res))
     conn.close()
     
     res = []
@@ -59,11 +59,11 @@ def get_data_avg_report_by_station_id_and_year(where_condition, limit, offset):
     page_sql = generate_page_clause(limit, offset)
 
     sql_str = "SELECT station_id,year,avg_max_temperature,avg_min_temperature,precipitation_total FROM avg_report " + where_sql + page_sql
-    # print(sql_str)
+    logger.info("avg_report sql_str: %s" % sql_str)
 
     conn = db.connect()
     sql_res = conn.execute(sql_str).fetchall()
-    # print(sql_res)
+    logger.debug("avg_report sql_res: %s" % str(sql_res))
     conn.close()
 
     res = []
