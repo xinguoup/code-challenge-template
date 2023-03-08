@@ -11,6 +11,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 
+# Generate where subsql clause by condition list
 def generate_where_clause(where_condition):
     where_sql = ""
     for c in where_condition:
@@ -22,11 +23,13 @@ def generate_where_clause(where_condition):
         where_sql = "WHERE" + where_sql
 
     return where_sql
-        
+
+# Generate subsql for page  
 def generate_page_clause(limit=10, offset=0):
     page_sql = "limit {} offset {} ".format(limit, offset)
     return page_sql
 
+# Get data from wheather_record table 
 def get_data_wheather_record_by_station_id_and_date(where_condition, limit=10, offset=0):
     where_sql = generate_where_clause(where_condition)
     page_sql = generate_page_clause(limit, offset)
@@ -50,7 +53,7 @@ def get_data_wheather_record_by_station_id_and_date(where_condition, limit=10, o
         res.append(item)
     return res
 
-
+# Get data from avg_report table 
 def get_data_avg_report_by_station_id_and_year(where_condition, limit, offset):
     where_sql = generate_where_clause(where_condition)
     page_sql = generate_page_clause(limit, offset)

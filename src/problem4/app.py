@@ -71,6 +71,7 @@ def get_weather_stats():
         "err_msg": "",
         "data": []
     }
+    
     station_id = year = None
     if args.get('station_id'):
         station_id = ('station_id', args.get('station_id'))
